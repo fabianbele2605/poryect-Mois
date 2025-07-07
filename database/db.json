@@ -17,7 +17,7 @@
       "is_active": true
     },
     {
-      "id": "bf79",
+      "id": "3",
       "name": "jane",
       "lastname": "doe",
       "identification": "12345",
@@ -25,12 +25,20 @@
       "is_active": true
     },
     {
-      "id": "4e46",
+      "id": "4",
       "name": "maria",
       "lastname": "almeira",
       "identification": "565464",
       "created": "2025-07-07T13:22:18.011Z",
       "is_active": true
+    },
+    {
+      "id": "5",
+      "name": "marcos",
+      "lastname": "polo",
+      "identification": "123457897",
+      "created": "2025-07-07T17:39:31.924Z",
+      "in_estado": true
     }
   ]
 }

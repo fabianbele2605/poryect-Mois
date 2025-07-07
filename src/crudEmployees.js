@@ -23,7 +23,23 @@ export async function getData() {
 
 export async function sendData(formData) {
   try{
-    const resp = await axios.post(employeeURL, formData)
+    // comprobar que no se repita el numero de indentifacion
+    const responseCkeck = await fetch(`${employeeURL}?identification=${formData.identification}`);
+    const existingUser = await responseCkeck.json();
+
+    if (existingUser.length > 0) {
+      throw new Error("El numero de identificacion ya exite");
+    }
+
+    const responseAll = await fetch('http://localhost:3000/employees');
+        const totalUsuario = await responseAll.json();
+        const maxID = totalUsuario.reduce((max, employees) => Math.max(max, parseInt(employees.id) || 0), 0);
+        const nuevoId = maxID + 1;
+
+
+    const resp = await axios.post(employeeURL, { id: nuevoId.toString(), ...formData, in_estado: true }, {
+      headers: { 'Content-Type': 'application/json'}
+    });
     if(resp.ok){
       alert("se creó correctamente")
     }
