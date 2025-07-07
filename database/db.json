@@ -1,0 +1,36 @@
+{
+  "employees": [
+    {
+      "id": "1",
+      "name": "Fabian",
+      "lastname": "Beleño",
+      "identification": "12345627",
+      "created": "2025-06-07T12:10:44.212Z",
+      "is_active": true
+    },
+    {
+      "id": "2",
+      "name": "Yoelmis",
+      "lastname": "Perdomo",
+      "identification": "12345687",
+      "created": "2025-07-07T12:10:44.212Z",
+      "is_active": true
+    },
+    {
+      "id": "bf79",
+      "name": "jane",
+      "lastname": "doe",
+      "identification": "12345",
+      "created": "2025-07-07T13:20:49.207Z",
+      "is_active": true
+    },
+    {
+      "id": "4e46",
+      "name": "maria",
+      "lastname": "almeira",
+      "identification": "565464",
+      "created": "2025-07-07T13:22:18.011Z",
+      "is_active": true
+    }
+  ]
+}
