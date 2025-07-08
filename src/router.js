@@ -5,13 +5,33 @@ import {
   editEmployee,
 } from "./crudEmployees";
 
+import { auth } from "./auth";
+
+let usuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
+let userLoggeado = JSON.parse(localStorage.getItem("user"))
+
 const routes = {
   "/": "/src/views/managmentEmployee.html",
+  "/login": "/src/views/login.html",
+  "/register": "/src/views/register",
 };
 
 export async function renderRoute() {
   const path = location.pathname || "/";
   const app = document.getElementById("app");
+  const isAuth = auth.isAuthenticated();
+
+  if (!isAuth && path !== "/login") {
+    if (path !== "/register") {
+      location.hash = "/login";
+      return;
+    }
+  }
+
+  if (isAuth && path === "/login") {
+    location.hash ="/";
+    return;
+  }
 
   const file = routes[path];
   if (!file) {
@@ -25,6 +45,11 @@ export async function renderRoute() {
 
     app.innerHTML = html;
     const employees = await getData();
+
+    if( path === "/login") {
+      const form = document.getElementById("loginForm");
+      const error = document.getElementById("loginError")
+    }
 
     const tbody = document.querySelector("#table-employee tbody");
     tbody.innerHTML = "";
@@ -48,6 +73,8 @@ export async function renderRoute() {
 
     setFunctions(tbody, 'editar', ".btn-editar");
     setFunctions(tbody, false, ".btn-eliminar");
+
+
 
     document.getElementById("sendForm").addEventListener("click", () => {
       const button = document.getElementById("sendForm");

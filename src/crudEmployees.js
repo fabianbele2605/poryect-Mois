@@ -44,7 +44,7 @@ export async function sendData(formData) {
       alert("se creó correctamente")
     }
   }catch(error){
-    console.log(error)
+    console.log('Error al crear usuario',error)
     return "ocurrió un error"
   }
 }
@@ -67,5 +67,22 @@ export async function editEmployee(id) {
 }
 
 export async function deleteEmployee(id) {
-  alert('hola desde el elimnar')
+  try {
+    const resp = await fetch(`${employeeURL}/${id}`, {
+      method: 'PATCH',
+      headers: { 'content-type': 'application/json'},
+      body: JSON.stringify({is_active: false})
+    });
+
+    if (!resp.ok) {
+      throw new Error('No se pudo eliminar al usuario')
+    }
+    alert('Usuario eliminado');
+    
+  } catch (error) {
+    console.error('Error al eliminar al usuario', error);
+    alert('Error al eliminar al usuario')
+  }
 }
+
+
